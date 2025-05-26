@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% if members %}
+    {% for member in members %}
+        <div class="content-section">
+            <div class="article-metadata">
+                <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pictures/' + member.profile_picture) }}""></img>
+                <h2>{{ member.username }}</h2>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+{% endblock content %}

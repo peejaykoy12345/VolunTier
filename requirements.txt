@@ -1,0 +1,8 @@
+Flask
+Flask-SQLAlchemy
+Flask-Login
+Flask-WTF
+Flask-Bcrypt
+email-validator
+WTForms
+Pillow

@@ -1,0 +1,32 @@
+{% extends 'layout.html'%}
+
+{% block content %}
+<h1>Home Page</h1>
+{% for post in applications %}
+    <article class="media content-section">
+        <div class="article-metadata">
+            <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pictures/' + post.applicant.profile_picture) }}""></img>
+            <h2>{{ post.applicant }}</h2>
+            <small class="text-muted">{{ post.date_applied.strftime('%Y-%m-%d') }}</small>
+        </div>
+        <div>
+            <h2>{{ post.content }}</h2>
+            <p class="article-content">{{ post.skills }}</p>
+        </div>
+        {% if project.owner == current_user %}
+            <a href="{{ url_for('accept_application', project_id=post.project_id, application_id=post.id ) }}" class="btn btn-outline-info">Accept</a>
+            <a href="{{ url_for('reject_application', project_id=post.project_id, application_id=post.id ) }}" class="btn btn-outline-danger">Delete</a>
+        {% endif %}
+    </article>
+{% endfor %}
+{% for page_num in applications.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+        {% if page_num %}
+            {% if applications.page == page_num %}
+                <a class='btn btn-info mb-4' href="{{ url_for('view_applications', project_id=project.id, page=page_num )}}">{{ page_num }}</a>
+            {% else %}
+                <a class='btn btn-outline-info mb-4' href="{{ url_for('view_applications', project_id=project.id, page=page_num )}}">{{ page_num }}</a>
+            {% endif %}
+        {% else %}
+        {% endif %}
+    {% endfor %}
+{% endblock content %}

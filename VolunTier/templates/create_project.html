@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<form action="" method="POST">
+    {{ form.hidden_tag() }}
+
+    <fieldset class="form-group">
+        <div class="form-group">
+            {{ form.title.label(class="form-control-label") }}
+            {% if form.title.errors %}
+                {{ form.title(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.title.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.title(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.description.label(class="form-control-label") }}
+            {% if form.description.errors %}
+                {{ form.description(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.description.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.description(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.skills_needed.label(class="form-control-label") }}
+            {% if form.skills_needed.errors %}
+                {{ form.skills_needed(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.skills_needed.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.skills_needed(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+    </fieldset>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-outline-info") }}
+    </div>
+</form>
+{% endblock content %}
