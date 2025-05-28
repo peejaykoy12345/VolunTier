@@ -49,6 +49,10 @@ def edit_account():
     form = AccountForm()
     if form.validate_on_submit():
         if form.picture.data and hasattr(form.picture.data, 'filename'):
+            if current_user.profile_picture:
+                old_picture_path = os.path.join(app.root_path, 'static/profile_pictures', current_user.profile_picture)
+                if os.path.exists(old_picture_path):
+                    os.remove(old_picture_path)
             picture_file = save_picture(form.picture.data)
             current_user.profile_picture = picture_file
 
